@@ -65,4 +65,6 @@ class StudentSerializer(serializers.ModelSerializer):
             'LoginToken',
             'LoginHash',
             'timeAcceptedTos',
+            # add field for task 2
+            'favorite_num'
         )
