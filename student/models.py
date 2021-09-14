@@ -39,6 +39,10 @@ class Student(models.Model):
     JUNIOR = 'JR'
     SENIOR = 'SR'
     class_year = models.IntegerField(blank=True, null=True)
+
+    # field favorite_num for Task 2
+    favorite_num = models.IntegerField(blank=True, null=True)
+
     user = models.OneToOneField(User, on_delete=models.deletion.CASCADE)
     img_url = models.CharField(max_length=300, default=-1)
     friends = models.ManyToManyField("self", blank=True)
