@@ -116,9 +116,7 @@ class UserAcquisitionModal extends React.Component {
             </span>
             <span>Continue with Google</span>
           </button>
-
-
-          {/* <button
+          <button
             className="btn abnb-btn secondary eight-px-top" onClick={() => {
               // this.props.createiCalfromTimetable();
             }} disabled
@@ -127,7 +125,13 @@ class UserAcquisitionModal extends React.Component {
               <i className="fa fa-envelope-o" />
             </span>
             <span>Email Coming Soon</span>
-          </button> */}
+          </button>
+          <a className="btn abnb-btn secondary eight-px-top" href="/press">
+            <span className="img-icon">
+              <i className="fa fa-envelope-o" />
+            </span>
+            <span>My Mock Button</span>
+          </a>
         </div>
       </Modal>
     );
