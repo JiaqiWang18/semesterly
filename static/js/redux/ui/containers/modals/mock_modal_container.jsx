@@ -19,6 +19,7 @@ import MockModal from '../../modals/mock_modal';
 
 const mapStateToProps = state => ({
   isVisible: state.mockModal.isVisible,
+  userInfo: state.mockModal.currentUser,
 });
 
 

@@ -14,6 +14,7 @@ GNU General Public License for more details.
 
 import React, { Component } from 'react';
 import Modal from 'boron/WaveModal';
+import PropTypes from 'prop-types';
 
 class MockModal extends Component{
   componentDidUpdate() {
@@ -40,11 +41,20 @@ class MockModal extends Component{
               <i className="fa fa-times" />
             </div>
           </div>
+          <div className="d-flex flex-column text-center">
+            <p>First Name: { this.props.userInfo.userFirstName }</p>
+            <p>Last Name: { this.props.userInfo.userLastName }</p>
+            <p>Graduating class: { this.props.userInfo.class_year }</p>
+          </div>
         </div>
       </Modal>
       )
   }
-  
 }
+
+MockModal.propTypes = {
+  toggleMockModal: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+};
 
 export default MockModal;

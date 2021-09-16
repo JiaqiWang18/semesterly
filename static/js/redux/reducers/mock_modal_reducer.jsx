@@ -14,10 +14,12 @@ GNU General Public License for more details.
 
 import * as ActionTypes from '../constants/actionTypes';
 
-const mockModal = (state = { isVisible: false }, action) => {
+const mockModal = (state = { isVisible: false, currentUser: null }, action) => {
   switch (action.type) {
     case ActionTypes.TOGGLE_MOCK_MODAL:
-      return { isVisible: !state.isVisible };
+      return { ...state, isVisible: !state.isVisible };
+    case ActionTypes.INIT_STATE:
+      return { ...state, currentUser: action.data.currentUser  };
     default:
       return state;
   }
