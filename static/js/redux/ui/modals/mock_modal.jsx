@@ -12,25 +12,39 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Modal from 'boron/WaveModal';
 
-const MockModal = (props) => {
-  console.log(props.isVisible)
-  return (
-    <Modal
-      className="welcome-modal max-modal"
-      closeOnClick={false}
-      keyboard={false}
-    >
-      <div className="modal-content">
-        <div className="modal-header">
-          <h1>Mock Modal!</h1>
+class MockModal extends Component{
+  componentDidUpdate() {
+    if (this.props.isVisible) {
+      this.modal.show();
+    }
+  }
+
+  render() {
+    return(
+      <Modal
+        ref={(c) => { this.modal = c; }}
+        closeOnClick={false}
+        keyboard={false}
+        onHide={this.props.toggleMockModal}
+      >
+        <div className="modal-content">
+          <div className="modal-header">
+            <h1>Mock Modal!</h1>
+            <div
+              className="modal-close"
+              onClick={() => this.modal.hide()}
+            >
+              <i className="fa fa-times" />
+            </div>
+          </div>
         </div>
-        <div className="modal-body"></div>
-      </div>
-    </Modal>
-    )
+      </Modal>
+      )
+  }
+  
 }
 
 export default MockModal;
