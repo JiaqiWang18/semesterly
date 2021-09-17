@@ -103,6 +103,12 @@ class StudentClub(models.Model):
 
         A StudentClub is a club that a student participates in. Each club
         has many students and each student can have many clubs
+
+        Attributes:
+        students (:obj:`Student`): Many to many relationship with Student
+        club_name (:obj:`CharField`): the name of the club
+        meeting_time (:obj:`TimeField`): the time of the meeting
+        meeting_day (:obj:`CharField`): day of the meeting, probably should do choices
     """
     students = models.ManyToManyField(Student)
     club_name = models.CharField(max_length=50)
