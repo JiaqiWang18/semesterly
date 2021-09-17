@@ -24,6 +24,16 @@ class MockModal extends Component{
   }
 
   render() {
+    {/* render custom model fields */}
+    const renderedStudentClubs = this.props.userInfo.clubs.map((club_obj, index) => {
+      return (
+        <div className="club-list" key={index}>
+          <p>{club_obj.club_name}</p>
+          <p>{club_obj.meeting_day}</p>
+          <p>{club_obj.meeting_time}</p>
+        </div>
+      )
+    })
     return(
       <Modal
         ref={(c) => { this.modal = c; }}
@@ -41,10 +51,11 @@ class MockModal extends Component{
               <i className="fa fa-times" />
             </div>
           </div>
-          <div className="d-flex flex-column text-center">
+          <div className="text-center">
             <p>First Name: { this.props.userInfo.userFirstName }</p>
             <p>Last Name: { this.props.userInfo.userLastName }</p>
-            <p>Graduating class: { this.props.userInfo.class_year }</p>
+            <p>Graduating class: {this.props.userInfo.class_year}</p>
+            {renderedStudentClubs}
           </div>
         </div>
       </Modal>
