@@ -98,6 +98,21 @@ class Student(models.Model):
                                  "https://accounts.google.com/o/oauth2/token", 'my-user-agent/1.0')
 
 
+class StudentClub(models.Model):
+    """ Database object representing a club.
+
+        A StudentClub is a club that a student participates in. Each club
+        has many students and each student can have many clubs
+    """
+    students = models.ManyToManyField(Student)
+    club_name = models.CharField(max_length=50)
+    meeting_time = models.TimeField(null=True, blank=True)
+    meeting_Day = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.club_name
+
+
 class Reaction(models.Model):
     """ Database object representing a reaction to a course.
 
@@ -157,6 +172,7 @@ class RegistrationToken(models.Model):
     endpoint = models.TextField(default='')
     student = models.ForeignKey(Student, null=True, default=None, on_delete=models.deletion.CASCADE)
 
+
 class PilotOffering(models.Model):
     sections = models.ManyToManyField(timetable_models.Section)
     day = models.CharField(max_length=2)
@@ -172,7 +188,8 @@ class PilotOffering(models.Model):
     course_name = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return "Course: {0}, Day: {0}, Time: {0} - {0}".format(self.course_name, self.day, self.time_start, self.time_end)
+        return "Course: {0}, Day: {0}, Time: {0} - {0}".format(self.course_name, self.day, self.time_start,
+                                                               self.time_end)
 
     def __unicode__(self):
         return "Course: %s, Day: %s, Time: %s - %s" % (self.course_name, self.day, self.time_start, self.time_end)
