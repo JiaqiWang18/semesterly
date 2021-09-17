@@ -113,7 +113,7 @@ class StudentClub(models.Model):
     students = models.ManyToManyField(Student)
     club_name = models.CharField(max_length=50)
     meeting_time = models.TimeField(null=True, blank=True)
-    meeting_Day = models.CharField(max_length=10, null=True, blank=True)
+    meeting_day = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return self.club_name
