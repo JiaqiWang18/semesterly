@@ -14,7 +14,7 @@ from rest_framework import serializers
 
 from courses.serializers import CourseSerializer
 from timetable.serializers import DisplayTimetableSerializer
-from student.models import Student
+from student.models import Student, StudentClub
 
 
 def get_student_dict(school, student, semester):
@@ -27,9 +27,11 @@ def get_student_dict(school, student, semester):
         timetables = student.personaltimetable_set.filter(
             school=school, semester=semester).order_by('-last_updated')
         courses = {course for timetable in timetables for course in timetable.courses.all()}
+        clubs = student.studentclub_set.all()
         context = {'semester': semester, 'school': school, 'student': student}
         user_dict['timetables'] = DisplayTimetableSerializer.from_model(timetables, many=True).data
         user_dict['courses'] = CourseSerializer(courses, context=context, many=True).data
+        user_dict['clubs'] = StudentClubSerializer(clubs, many=True).data
     return user_dict
 
 
@@ -66,3 +68,9 @@ class StudentSerializer(serializers.ModelSerializer):
             'LoginHash',
             'timeAcceptedTos',
         )
+
+
+class StudentClubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentClub
+        fields = ('club_name', 'meeting_day', 'meeting_time')
